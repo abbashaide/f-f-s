@@ -5,12 +5,19 @@ import face from './face.png';
 
 const Logo = () => {
 	return(
-		<div className='bg-blue' style ={{display: 'flex', justifyContent: 'center'}}>	
-			<Tilt className="Tilt br2 shadow-1" options={{ max : 25 }} style={{ height: 80, width: 80 }} >
- 				<div className="Tilt-inner"><img src={face} alt='logo' /></div>
-			</Tilt>
-			<p className ='mytext b courier f2 ttu tc dib mt3 mb0'>Facognition</p>
-		</div>	
+		<div>
+			<div className='bg-black' style ={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: 'max'}}>	
+				<Tilt className="Tilt mt2 mb2 br2" options={{ max : 30 }} style={{ height: 81, width: 80 }} >
+	 				<div className="Tilt-inner pa1 bg-white"><img src={face} alt='logo' /></div>
+				</Tilt>
+
+				<p className ='white b code f2 ttl tc dib mt4 mb0'>F a c o g n i t i o n</p>
+			</div>
+
+			<div className ='pa2 myBack'>
+			</div>	
+
+		</div>
 	);
 }
 

@@ -1,7 +1,9 @@
 .Tilt{
-	margin-right: 5em;
+	margin-right: 2em;
 }
 
-.mytext {
-	letter-spacing: 2em;
+.myBack{
+	background-color: #00f260;
+	background-image: linear-gradient(62deg, #00f260 0%, #0575e6 100%);
+
 }
