@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Logo />
       <Navigation />
-      <Home />
       <MessageBox />
+      <Home />
       {/*<UserInput />
             <ImageInput />
             <FaceRecognition />
