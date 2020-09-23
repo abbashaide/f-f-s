@@ -14,7 +14,7 @@ function App() {
       <Navigation />
       <MessageBox />
       <UserInput />
-      <Home />
+      {/*<Home />*/}
       {/*<ImageInput />
             <FaceRecognition />
             <Profile />*/}
