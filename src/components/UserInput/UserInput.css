@@ -1,9 +1,3 @@
-.flexCon{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-}
 .body {
   position: relative;
   margin: 40px auto;
@@ -80,11 +74,11 @@
 }
 
 input[type=radio]:checked ~ .check {
-  border: 5px solid lightblue;
+  border: 5px solid #96CCFF;
 }
 
 input[type=radio]:checked ~ .check::before{
-  background: lightblue;
+  background: #96CCFF;
 }
 
 input[type=radio]:checked ~ span{

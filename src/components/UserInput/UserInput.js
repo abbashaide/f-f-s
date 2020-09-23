@@ -3,7 +3,7 @@ import './UserInput.css';
 
 const UserInput = () => {
 	return(
-		<div className='body'>
+		<div className='body shadow-4'>
 				<p className='f1 flexCon'>Whose thy Friend or Enemy!</p>
 
 			<div className='radios flexCon'>
@@ -18,7 +18,7 @@ const UserInput = () => {
 				</label>
 			</div>
 			<label className='flexCon'>
-				<span className='flexCon nameI'>Enter name: </span><input className='flexCon ml3 mt4 mb4 mr3 pa2' type="text" id="name" name="name" placeholder='' />
+				<span className='flexCon nameI'>Enter name: </span><input className='flexCon ml3 mt4 mb4 mr3 pa2 bg-light-blue' type="text" id="name" name="name" placeholder='' />
 			</label>
 
 		</div>
