@@ -17,8 +17,7 @@ function App() {
       <UserInput />
       <ImageInput />
       {/*<Home />*/}
-      {/*<ImageInput />
-            <FaceRecognition />
+      {/*<FaceRecognition />
             <Profile />*/}
     </div>
   );
