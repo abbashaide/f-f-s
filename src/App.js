@@ -5,22 +5,71 @@ import MessageBox from './components/MessageBox/MessageBox.js';
 import UserInput from './components/UserInput/UserInput.js';
 import ImageInput from'./components/ImageInput/ImageInput.js';
 import Home from './components/Home/Home.js';
+import Particles from 'react-particles-js';
 import './App.css';
 import 'tachyons';
 
-function App() {
-  return (
-    <div className="App">
-      <Logo />
-      <Navigation />
-      <MessageBox />
-      <UserInput />
-      <ImageInput />
-      {/*<Home />*/}
-      {/*<FaceRecognition />
-            <Profile />*/}
-    </div>
-  );
+const particleOptions = {
+  particles: {
+    number: {
+      value: 80,
+      density : {
+        enable: true,
+        value_area: 800
+      }
+    }
+  },
+  line_linked: {
+    enable: true,
+    opacity: 0.02
+  }
+}
+
+
+class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      input: '',
+      route: 'addImage',
+      semiRoute: 'url',
+    }
+  }
+
+  onInputChange = (event) => {
+    console.log(event.target.value);
+  }
+
+  onUpload = () => {
+    console.log('Click!');
+  }
+
+  onRouteChange = (route) => {
+    console.log(route);
+    this.setState({route: route});
+  }
+
+  onSemiRouteChange = (semiRoute) => {
+    console.log(semiRoute);
+    this.setState({semiRoute: semiRoute});
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Particles className='particles' params={particleOptions} />
+        
+        <Logo />
+        <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange}/>
+        <MessageBox />
+        <UserInput route={this.state.route} />
+        <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
+        {/*<Home />*/}
+        {/*<FaceRecognition />
+              <Profile />*/}
+      </div>
+    );
+  }
 }
 
 export default App;
