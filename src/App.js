@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation.js';
 import Logo from './components/Logo/Logo.js';
-import MessageBox from './components/MessageBox/MessageBox.js';
-import UserInput from './components/UserInput/UserInput.js';
 import ImageInput from'./components/ImageInput/ImageInput.js';
 import Home from './components/Home/Home.js';
 import Particles from 'react-particles-js';
@@ -33,6 +31,7 @@ class App extends Component {
       input: '',
       route: 'addImage',
       semiRoute: 'url',
+
     }
   }
 
@@ -46,7 +45,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     console.log(route);
-    this.setState({route: route});
+    this.setState({route: route, semiRoute: 'url'});
   }
 
   onSemiRouteChange = (semiRoute) => {
@@ -60,9 +59,7 @@ class App extends Component {
         <Particles className='particles' params={particleOptions} />
         
         <Logo />
-        <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange}/>
-        <MessageBox />
-        <UserInput route={this.state.route} />
+        <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
         <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
         {/*<Home />*/}
         {/*<FaceRecognition />
