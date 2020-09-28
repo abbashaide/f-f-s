@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation.js';
 import Logo from './components/Logo/Logo.js';
+import Demographics from './components/Demographics/Demographics.js';
 import ImageInput from'./components/ImageInput/ImageInput.js';
 import Home from './components/Home/Home.js';
 import Particles from 'react-particles-js';
@@ -57,9 +58,9 @@ class App extends Component {
     return (
       <div className="App">
         <Particles className='particles' params={particleOptions} />
-        
         <Logo />
         <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
+        <Demographics />
         <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
         {/*<Home />*/}
         {/*<FaceRecognition />

@@ -6,3 +6,9 @@
 	margin-right: 2em;
   margin-left: 5em;
 }
+.nav {
+  position: fixed;
+  top: 7em;
+  right: 0;
+  left: 0;
+}

@@ -5,7 +5,7 @@ import face from './face.png';
 
 const Logo = () => {
 	return(
-		<div>
+		<div className='logo'>
 			<div className='bg-black' style ={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: 'max'}}>	
 				<Tilt className="Tilt mt2 mb2 br2" options={{ max : 30 }} style={{ height: 81, width: 80 }} >
 	 				<div className="Tilt-inner pa1 bg-white"><img src={face} alt='logo' /></div>

@@ -7,3 +7,10 @@
 	background-image: linear-gradient(62deg, #3c1c68 18%, #ad5389 55%, #3c1053 100%);
 
 }
+
+.logo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}

@@ -1,7 +1,7 @@
 import	React from 'react';
 import './Navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUserCircle, faPlus, faFingerprint, faFileUpload, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUserCircle, faFingerprint, faFileUpload, faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Navigation = ({ onRouteChange, onSemiRouteChange, route }) => {
 	
@@ -18,13 +18,15 @@ const Navigation = ({ onRouteChange, onSemiRouteChange, route }) => {
 
 	return(
 		<div>
-			<nav className = 'bb b--black-20 bg-white tc mw10 center' style ={{display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap'}}>
-				<p className ='f4 fw6 ttc tracked link dim dib black pa2 pointer padd mt1 mb0' onClick={() => onRouteChange('home')}><FontAwesomeIcon icon={faHome} /> Home</p>
-				<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('profile')}><FontAwesomeIcon icon={faUserCircle} /> Profile</p>
-				<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('addImage')}><FontAwesomeIcon icon={faFingerprint} /> Analyse</p>
-			</nav>
-			{miniNav}
+			<div className='nav'>
+				<nav className = 'bb b--black-20 bg-white tc mw10 center' style ={{display: 'flex', justifyContent: 'flex-end', flexWrap: 'wrap'}}>
+					<p className ='f4 fw6 ttc tracked link dim dib black pa2 pointer padd mt1 mb0' onClick={() => onRouteChange('home')}><FontAwesomeIcon icon={faHome} /> Home</p>
+					<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('profile')}><FontAwesomeIcon icon={faUserCircle} /> Profile</p>
+					<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('addImage')}><FontAwesomeIcon icon={faFingerprint} /> Analyse</p>
+				</nav>
+				{miniNav}
 
+			</div>
 		</div>
 	);
 }
