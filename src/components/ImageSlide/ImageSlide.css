@@ -1,0 +1,21 @@
+.bdy{
+	height: auto;
+  width: 1200px;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+
+
+.check {
+	position: absolute;
+  border: 1px solid gray;
+  height: 40px;
+  width: 51px;
+  margin-right: 15px;
+	z-index: 5;
+}
+
+input[type=image] ~ .check {
+  border: 1px solid black;
+}

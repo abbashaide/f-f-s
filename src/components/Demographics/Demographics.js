@@ -1,20 +1,26 @@
 import React from 'react';
 import './Demographics.css';
-const Demographics = () => {
+const Demographics = ({ imageUrl }) => {
 	return(
-	<div className='body shadow-4 flexCon bg-light-blue'>
+	<div className='body shadow-4 flexCon bg-gray'>
 		
-		<div className='pa2 w-70'>
+		<div className='pa2 w-70 bg-light-gray'>
 			<div className=''>
-				<img className='bg-light-blue' id='inputimage' alt='' src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg' width='900' height='auto' />
+				<img className='bg-light-blue mt9 mb9 mr0 ml0' id='inputimage' alt='inputimage' src={imageUrl} width='712' height='474' />
 			</div>
 		</div>
 
-		<div className='pa4 w-30'>
-			<p className=''>{`Faces`}</p>
-			<p className=''>{`Gender : Masculine`}</p>
-			<p className=''>{`Age : 23`}</p>
-			<p className=''>{`Ethinicty : Asian`}</p>
+		<div className='w-30 bg-white myH'>
+			<p className='f2'>Demographics</p>
+			<div className='pa2 bb b--black-10'>
+				<p className=''>{`0 Face(s) detected!`}</p>
+			</div>
+
+			<div className='pa3 center'>
+				<p className='f4 pa3 bt bb b--black-10 center taj pointer hover-bg-light-blue mb0'>Gender: Masculine</p>
+				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0 mb0'>Age:  23</p>
+				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0'>Ethnicity:  Asian</p>
+			</div>
 		</div>
 	</div>	
 	);
