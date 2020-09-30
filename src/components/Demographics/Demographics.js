@@ -1,6 +1,12 @@
 import React from 'react';
 import './Demographics.css';
-const Demographics = ({ imageUrl }) => {
+const Demographics = ({ imageUrl, demograph }) => {
+	let age, gender, race;
+		age = '23';
+		gender = 'Feminine';
+	  race = 'Black or African American';
+	
+	
 	return(
 	<div className='body shadow-4 flexCon bg-gray'>
 		
@@ -17,9 +23,9 @@ const Demographics = ({ imageUrl }) => {
 			</div>
 
 			<div className='pa3 center'>
-				<p className='f4 pa3 bt bb b--black-10 center taj pointer hover-bg-light-blue mb0'>Gender: Masculine</p>
-				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0 mb0'>Age:  23</p>
-				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0'>Ethnicity:  Asian</p>
+				<p className='f4 pa3 bt bb b--black-10 center taj pointer hover-bg-light-blue mb0'>Age: {age}</p>
+				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0 mb0'>Gender:  {gender}</p>
+				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0'>Ethnicity:  {race}</p>
 			</div>
 		</div>
 	</div>	
