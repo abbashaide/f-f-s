@@ -1,7 +1,7 @@
 import React from'react';
 import './ImageSlide.css';
 
-const ImageSlide = () => {
+const ImageSlide = ({ onImageSelect }) => {
 	let images = [
 	{ id: 1, url: 'https://clarifai.com/cms-assets/20180320222304/demographics-001.jpg' },
 	{ id: 2, url: 'https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg' },
@@ -18,29 +18,17 @@ const ImageSlide = () => {
 	return(
 		<div className='center bg-gray bdy flex justify-start pa2'>
 			
-			<div className='border flexCon'>
+			<div className='center flexCon'>
 			{images.map((item) => {
 				return(
 					<div className='flexCon pointer'>
-						<input className='ml3 mr4' type='image' alt='slideImg' src={item.url} width='50' height='40' />
-						<div className="check flexCon"></div>
+						<img className='mr4 ml3 grow' alt='slideImg' src={item.url} width='50' height='40' onClick={() => onImageSelect(item.url)} />
 					</div>
 				);
 			})
 			}
 			</div>
 			
-			{// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222305/demographics-003.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222306/demographics-004.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222307/demographics-005.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222308/demographics-006.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222310/demographics-007.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222310/demographics-008.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222311/demographics-009.jpg' width='50' height='40' />
-			// <img className='flex justify-start items-center mr4 pointer' alt='slideImg' src='https://clarifai.com/cms-assets/20180320222312/demographics-010.jpg' width='50' height='40' />
-		}
-
 		</div>
 	);
 }

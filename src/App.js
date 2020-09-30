@@ -54,14 +54,18 @@ class App extends Component {
     this.setState({semiRoute: semiRoute});
   }
 
+  onImageSelect = (img) => {
+    this.setState({ imageUrl: img });
+  }
+
   render(){
     return (
       <div className="App">
         <Particles className='particles' params={particleOptions} />
         <Logo />
         <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
-        <Demographics imageUrl={this.state.imageUrl}/>
-        <ImageSlide />
+        <Demographics imageUrl={this.state.imageUrl} />
+        <ImageSlide onImageSelect={this.onImageSelect} />
         <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
         {/*<Home />*/}
         {/*<FaceRecognition />

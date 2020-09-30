@@ -6,7 +6,7 @@ const Demographics = ({ imageUrl }) => {
 		
 		<div className='pa2 w-70 bg-light-gray'>
 			<div className=''>
-				<img className='bg-light-blue mt9 mb9 mr0 ml0' id='inputimage' alt='inputimage' src={imageUrl} width='712' height='474' />
+				<img className='bg-light-blue mt9 mb9 mr0 ml0' id='inputimage' alt='inputimage' src={imageUrl} maxwidth='712' height='474' />
 			</div>
 		</div>
 
