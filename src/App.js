@@ -4,6 +4,7 @@ import Logo from './components/Logo/Logo.js';
 import Demographics from './components/Demographics/Demographics.js';
 import ImageSlide from './components/ImageSlide/ImageSlide.js'
 import ImageInput from'./components/ImageInput/ImageInput.js';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import Home from './components/Home/Home.js';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
@@ -39,20 +40,25 @@ class App extends Component {
       route: 'addImage',
       semiRoute: 'url',
       imageUrl: 'https://clarifai.com/cms-assets/20180320222304/demographics-001.jpg',
-      demograph: {},
-      box: {},
+      selectedFace: {
+        age: '23',
+        gender:'feminine',
+        race: 'black or african american',
+      },
+      demograph: [],
+      box: [],
     }
   }
 
+
   getImageDemographics = (data) => {
     const clarifaiDemographics = data.outputs[0].data.regions.map((region) => {
-      return(
-      {
+      return {
         age: region.data.concepts[0].name,
         gender: region.data.concepts[20].name,
-        race : region.data.concepts[22].name
+        race : region.data.concepts[22].name,
       }
-      );
+      
     });
     return clarifaiDemographics;
   }
@@ -63,14 +69,15 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
+    
     const clarifiFace = data.outputs[0].data.regions.map((region) => {
       return region.region_info.bounding_box;
    });
 
-   const image = document.getElementById('inputimage');
+   const image = document.getElementById('inputimages');
    const width = Number(image.width);
    const height = Number(image.height);
-   
+
    const box = clarifiFace.map((face) =>{
       return {
       leftCol: face.left_col * width,
@@ -96,15 +103,15 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
     
     app.models.predict(Clarifai.DEMOGRAPHICS_MODEL, this.state.input)
-  .then(response => {
-    // There was a successful response
-    this.saveFaceLocation(this.calculateFaceLocation(response));
-    this.saveImageDemographics(this.getImageDemographics(response));
-  })
-  .catch(error => {
-    // There was an error
-    console.log('error');
-  });
+    .then(response => {
+      // There was a successful response
+      this.saveFaceLocation(this.calculateFaceLocation(response));
+      this.saveImageDemographics(this.getImageDemographics(response));
+    })
+    .catch(error => {
+      // There was an error
+      console.log(error);
+    });
   }
 
   onRouteChange = (route) => {
@@ -117,6 +124,26 @@ class App extends Component {
 
   onImageSelect = (img) => {
     this.setState({ imageUrl: img });
+    app.models.predict(Clarifai.DEMOGRAPHICS_MODEL, img)
+    .then(response => {
+      // There was a successful response
+      this.saveFaceLocation(this.calculateFaceLocation(response));
+      this.saveImageDemographics(this.getImageDemographics(response));
+    })
+    .catch(error => {
+      // There was an error
+      console.log(error);
+    });
+  }
+
+  onFaceSelect = (demograph) => {
+    this.setState({selectedFace:
+      {
+        age : demograph.age,
+        gender : demograph.gender,
+        race : demograph.race
+      }
+    });
   }
 
   render(){
@@ -125,7 +152,10 @@ class App extends Component {
         <Particles className='particles' params={particleOptions} />
         <Logo />
         <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
-        <Demographics imageUrl={this.state.imageUrl} demograph={this.state.demograph} />
+        <div className='flex justify-center'>
+          <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} />
+          <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} />
+        </div>
         <ImageSlide onImageSelect={this.onImageSelect} />
         <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
         {/*<Home />*/}

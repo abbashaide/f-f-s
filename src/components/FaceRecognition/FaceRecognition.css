@@ -1,0 +1,16 @@
+.faceRecBody{
+  margin-top: 250px;
+  margin-bottom: 10px;
+  width: 800px;
+  padding: 30px;
+  padding-left: 40px;
+}
+
+.bounding-box {
+	position: absolute;
+  box-shadow: 0 0 0 3px #149df2 inset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+}
