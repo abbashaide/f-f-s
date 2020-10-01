@@ -20,7 +20,7 @@ const Demographics = ({ demograph, onFaceSelect, selectedFace }) => {
 				{
 					demograph.map((faceDetails, i) => {
 						return(
-							<button className="grow" key={i}  width='50' height='40' onClick={() => onFaceSelect(faceDetails)}>{`Face no.${i+1}`}</button>
+							<button className="grow" key={i}  width='50' height='40' onClick={() => onFaceSelect(faceDetails, i)} >{`Face no.${i+1}`}</button>
 						)
 					})
 				}
