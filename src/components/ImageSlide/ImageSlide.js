@@ -19,9 +19,9 @@ const ImageSlide = ({ onImageSelect }) => {
 		<div className='center bg-gray bdy flex justify-start pa2'>
 			
 			<div className='center flexCon'>
-			{images.map((item) => {
+			{images.map((item, i) => {
 				return(
-					<div className='flexCon pointer'>
+					<div className='flexCon pointer' key={i}>
 						<img className='mr4 ml3 grow' alt='slideImg' src={item.url} width='50' height='40' onClick={() => onImageSelect(item.url)} />
 					</div>
 				);

@@ -1,36 +1,39 @@
 import React from 'react';
 import './Demographics.css';
-const Demographics = ({ demograph, onFaceSelect, selectedFace }) => {
-
-	let age, gender, race;
-		age = '23';
-		gender = 'Feminine';
-	  race = 'Black or African American';
+const Demographics = ({ demograph, onFaceSelect, selectedFace, onFaceUnselect }) => {
 		
-	
 	return(
 	<div className='body shadow-4 flexCon bg-light-gray'>
 		
 
-		<div className='bg-white myH'>
-			<p className='f2'>Demographics</p>
-			<div className='pa2 bb b--black-10'>
-				<p className=''>{`${demograph.length} Face(s) detected!`}</p>
-				<div>
+		<div className='bg-white myH'  style={{overflowX: 'scroll', overflowY: 'hidden'}}>
+			<p className='f3 mb0 pa2 tc bb b--black-10'>Demographics</p>
+			<div className='pa2'>
+				<p className='tc'>{`${demograph.length} Face(s) detected!`}</p>
+				<div className='flex ml3'>
 				{
 					demograph.map((faceDetails, i) => {
 						return(
-							<button className="grow" key={i}  width='50' height='40' onClick={() => onFaceSelect(faceDetails, i)} >{`Face no.${i+1}`}</button>
+							<button className="grow tc mr1 ml1" key={i} style={{width: 30, height: 30}} onMouseLeave={() => onFaceUnselect()} onClick={() => onFaceSelect(faceDetails, i)} >{`${i+1}`}</button>
 						)
 					})
 				}
 				</div>
 			</div>
 
-			<div className='pa3 center'>
-				<p className='f4 pa3 bt bb b--black-10 center taj pointer hover-bg-light-blue mb0'>Age: {selectedFace.age}</p>
-				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0 mb0'>Gender:  {selectedFace.gender}</p>
-				<p className='f4 pa3 bb b--black-10 center taj pointer hover-bg-light-blue mt0'>Ethnicity:  {selectedFace.race}</p>
+			<div className='mt3 pa3 center' style={{width: 400, height: 316}}>
+				<div style={{height: 72}}>
+					<p className='mb0 f6 mt2 tl'>Age :</p>
+					<p className='f4 pa3 bb b--black-10 pointer hover-bg-light-blue mt0 tl ttc'>{selectedFace.age}</p>
+				</div>
+				<div style={{height: 72}}>
+					<p className='mb0 f6 mt2 tl'>Gender :</p>
+					<p className='f4 pa3 bb b--black-10 pointer hover-bg-light-blue mt0 tl ttc '>{selectedFace.gender}</p>
+				</div>
+				<div style={{height: 72}}>
+					<p className='mb0 f6 mt2 tl'>Ethnicity :</p>
+					<p className='f4 pa3 bb b--black-10 pointer hover-bg-light-blue mt0 tl ttc'>{selectedFace.race}</p>
+				</div>
 			</div>
 		</div>
 

@@ -8,9 +8,5 @@
 
 .myH {
 	height: 493px; 
-}
-.taj{
-	text-align: justify; /* For Edge */
-  -moz-text-align-last: justify; /* For Firefox prior 58.0 */
-  text-align-last: justify
+	width : 400px;
 }

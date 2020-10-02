@@ -9,7 +9,7 @@ import Home from './components/Home/Home.js';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import './App.css';
-import 'tachyons';
+
 
 const app = new Clarifai.App({
  apiKey: 'Re-Enter'
@@ -45,7 +45,7 @@ class App extends Component {
         gender:'',
         race: '',
       },
-      selectedBox: {},
+      selectedBox: [],
       demograph: [],
       box: [],
     }
@@ -71,7 +71,7 @@ class App extends Component {
 
   saveImageDemographics = demograph => {
     this.setState({demograph: demograph});
-    this.onFaceSelect(demograph[0], 0);       //loading demographics as soon as page uploads
+    this.setDemograph(demograph[0], 0);       //loading demographics as soon as page loads
   }
 
 
@@ -113,8 +113,12 @@ class App extends Component {
     app.models.predict(Clarifai.DEMOGRAPHICS_MODEL, url)
     .then(response => {
       // There was a successful response
+      if(response.outputs[0].data.regions){
       this.saveFaceLocation(this.calculateFaceLocation(response));
       this.saveImageDemographics(this.getImageDemographics(response));
+      }else{
+        alert("Image doesn't contain any faces!")
+      }
     })
     .catch(error => {
       // There was an error
@@ -133,7 +137,11 @@ class App extends Component {
   //                                User uploading
 
   onUpload = () => {
-    this.setState({imageUrl: this.state.input});
+    this.setState({imageUrl: this.state.input, box: [], demograph: [], selectedFace: {
+        age: '',
+        gender:'',
+        race: '',
+      }});
     this.requestFromAPI(this.state.input);
     
   }
@@ -160,25 +168,33 @@ class App extends Component {
     this.requestFromAPI(img);
   }
 
+  //                              setting demograph values for selectedFace
 
-  //                               When a Face is selected
-
-  onFaceSelect = (demograph, i) => {
+  setDemograph = (demograph, i) => {
     this.setState({selectedFace:
       {
         age : demograph.age,
         gender : demograph.gender,
         race : demograph.race
-      }, selectedBox: this.state.box[i]
+      }    
     });
   }
 
+  //                               When a Face is selected
 
-  //                                Image Loads
-
-  onImageLoad = (demograph, i) => {
-    console.log(demograph.length)
+  onFaceSelect = (demograph, i) => {
+    this.setDemograph(demograph, i);
+    this.setState({selectedBox: this.state.box[i]});
   }
+
+
+  //                               When a Face is unselected
+
+  onFaceUnselect = () => {
+    this.setState({selectedBox: []});
+  }
+
+
   //                              Lifecycle hooks
 
   componentDidMount() {
@@ -194,8 +210,8 @@ class App extends Component {
         <Logo />
         <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
         <div className='flex justify-center'>
-          <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} imageUrl={this.state.imageUrl} />
-          <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} />
+          <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} onFaceUnselect={this.onFaceUnselect} />
+          <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.state.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} onFaceUnselect={this.onFaceUnselect} />
         </div>
         <ImageSlide onImageSelect={this.onImageSelect} />
         <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
