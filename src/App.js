@@ -209,7 +209,7 @@ class App extends Component {
         <Particles className='particles' params={particleOptions} />
         <Logo />
         <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
-        <div className='flex justify-center'>
+        <div className='flex justify-center flex-wrap mt-250'>
           <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} onFaceUnselect={this.onFaceUnselect} />
           <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.state.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} onFaceUnselect={this.onFaceUnselect} />
         </div>

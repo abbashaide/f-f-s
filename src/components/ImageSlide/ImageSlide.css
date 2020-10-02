@@ -1,8 +1,6 @@
 .bdy{
 	height: auto;
-  width: 1200px;
-  justify-content: flex-start;
-  align-content: center;
+  max-width: 1200px;
 }
 
 .bdy .grow {

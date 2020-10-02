@@ -8,6 +8,10 @@
   flex-wrap: wrap;
 }
 
+.mt-250 {
+  margin-top: 250px;
+}
+
 .particles {
   position: fixed;
   top: 0;

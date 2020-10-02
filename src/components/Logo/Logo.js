@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Tilt from 'react-tilt';
 import './Logo.css';
 import face from './face.png';
 
-const Logo = () => {
+class Logo extends Component {
+	constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+	render(){
 	return(
 		<div className='logo'>
 			<div className='bg-black' style ={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: 'max'}}>	
-				<Tilt className="Tilt mt2 mb2 br2" options={{ max : 30 }} style={{ height: 81, width: 80 }} >
+				<Tilt ref={this.myRef} className="Tilt mt2 mb2 br2" options={{ max : 30 }} style={{ height: 81, width: 80 }} >
 	 				<div className="Tilt-inner pa1 bg-white">
 	 					<img src={face} alt='logo' />
 	 				</div>
@@ -20,7 +25,8 @@ const Logo = () => {
 			</div>	
 
 		</div>
-	);
+	)
+	}
 }
 
 export default Logo;

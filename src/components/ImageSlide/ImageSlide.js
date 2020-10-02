@@ -16,13 +16,13 @@ const ImageSlide = ({ onImageSelect }) => {
 	
 	]
 	return(
-		<div className='center bg-gray bdy flex justify-start pa2'>
+		<div className='center bg-gray bdy pa2 flexCon'>
 			
-			<div className='center flexCon'>
+			<div className='flexCon'>
 			{images.map((item, i) => {
 				return(
 					<div className='flexCon pointer' key={i}>
-						<img className='mr4 ml3 grow' alt='slideImg' src={item.url} width='50' height='40' onClick={() => onImageSelect(item.url)} />
+						<img className='mr4 ml3 grow flexCon' alt='slideImg' src={item.url} width='50' height='40' onClick={() => onImageSelect(item.url)} />
 					</div>
 				);
 			})
