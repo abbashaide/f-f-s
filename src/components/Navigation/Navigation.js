@@ -1,7 +1,7 @@
 import	React from 'react';
 import './Navigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUserCircle, faFingerprint, faFileUpload, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUserCircle, faFingerprint, faSignOutAlt ,faFileUpload, faLink } from '@fortawesome/free-solid-svg-icons';
 
 const Navigation = ({ onRouteChange, onSemiRouteChange, route }) => {
 	
@@ -23,6 +23,7 @@ const Navigation = ({ onRouteChange, onSemiRouteChange, route }) => {
 					<p className ='f4 fw6 ttc tracked link dim dib black pa2 pointer padd mt1 mb0' onClick={() => onRouteChange('home')}><FontAwesomeIcon icon={faHome} /> Home</p>
 					<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('profile')}><FontAwesomeIcon icon={faUserCircle} /> Profile</p>
 					<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('addImage')}><FontAwesomeIcon icon={faFingerprint} /> Analyse</p>
+					<p className ='f4 fw6 ttc tracked link dim black pa2 pointer padd mt1 mb1' onClick={() => onRouteChange('signin')}><FontAwesomeIcon icon={faSignOutAlt} /> Sign Out</p>
 				</nav>
 				{miniNav}
 

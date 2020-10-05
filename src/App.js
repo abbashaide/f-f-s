@@ -6,6 +6,9 @@ import ImageSlide from './components/ImageSlide/ImageSlide.js'
 import ImageInput from'./components/ImageInput/ImageInput.js';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition.js';
 import Home from './components/Home/Home.js';
+import SignIn from './components/SignIn/SignIn.js';
+import Register from './components/Register/Register.js';
+import Profile from './components/Profile/Profile.js'
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import './App.css';
@@ -37,7 +40,7 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      route: 'addImage',
+      route: 'signin',
       semiRoute: 'url',
       imageUrl: 'https://clarifai.com/cms-assets/20180320222304/demographics-001.jpg',
       selectedFace: {
@@ -134,14 +137,20 @@ class App extends Component {
   }
 
 
+  //                                Refresh states (where necessary for e.g route changes)
+  refreshStates = () => {
+    this.setState({box: [], demograph: [], selectedFace: {
+      age: '',
+      gender:'',
+      race: '',
+    }});
+  }
+
   //                                User uploading
 
   onUpload = () => {
-    this.setState({imageUrl: this.state.input, box: [], demograph: [], selectedFace: {
-        age: '',
-        gender:'',
-        race: '',
-      }});
+    this.setState({imageUrl: this.state.input});
+    this.refreshStates();
     this.requestFromAPI(this.state.input);
     
   }
@@ -150,7 +159,12 @@ class App extends Component {
   //                              Navbar route
 
   onRouteChange = route => {
-    this.setState({route: route, semiRoute: 'url'});
+    this.setState({route: route});
+    this.refreshStates();
+    if (route === 'addImage'){
+      this.setState({semiRoute: 'url'});
+      this.requestFromAPI(this.state.imageUrl);
+    }
   }
 
 
@@ -198,29 +212,56 @@ class App extends Component {
   //                              Lifecycle hooks
 
   componentDidMount() {
-    this.requestFromAPI(this.state.imageUrl);
+    
   }
 
   
 
   render(){
+
     return (
       <div className="App">
         <Particles className='particles' params={particleOptions} />
-        <Logo />
-        <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
-        <div className='flex justify-center flex-wrap mt-250'>
-          <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} onFaceUnselect={this.onFaceUnselect} />
-          <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.state.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} onFaceUnselect={this.onFaceUnselect} />
-        </div>
-        <ImageSlide onImageSelect={this.onImageSelect} />
-        <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
-        {/*<Home />*/}
-        {/*<FaceRecognition />
-              <Profile />*/}
+       
+       { this.state.route !== 'signin' &&  this.state.route !== 'register' ?   //    loading Navbar if its not sigin page
+          <div>
+            <Logo />
+            <Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
+           { this.state.route === 'home'?   //    opening home page when user signin's
+              <Home /> :
+              (this.state.route === 'profile' ?  // opens user's profile when
+                <Profile /> :    //at last if user opens up the app from navbar it is displayed
+                <div>
+                  <div className='flex justify-center flex-wrap mt-250'>
+                    <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} onFaceUnselect={this.onFaceUnselect} />
+                    <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.state.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} onFaceUnselect={this.onFaceUnselect} />
+                  </div>
+                  <ImageSlide onImageSelect={this.onImageSelect} />
+                  <ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>
+                </div>
+              ) 
+            }
+          </div> :
+          ( this.state.route === 'signin' ?
+              <SignIn onRouteChange={this.onRouteChange} /> :
+              <Register onRouteChange={this.onRouteChange} />
+          )
+        }
+
+        {/**/}
       </div>
     );
   }
 }
 
 export default App;
+
+
+/*<Logo />
+<Navigation onSemiRouteChange={this.onSemiRouteChange} onRouteChange={this.onRouteChange} route={this.state.route} />
+<div className='flex justify-center flex-wrap mt-250'>
+  <Demographics demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} selectedFace={this.state.selectedFace} onFaceUnselect={this.onFaceUnselect} />
+  <FaceRecognition imageUrl={this.state.imageUrl} box={this.state.box} selectedBox={this.state.selectedBox} demograph={this.state.demograph} onFaceSelect={this.onFaceSelect} onFaceUnselect={this.onFaceUnselect} />
+</div>
+<ImageSlide onImageSelect={this.onImageSelect} />
+<ImageInput semiRoute={this.state.semiRoute} onInputChange={this.onInputChange} onUpload={this.onUpload}/>*/
