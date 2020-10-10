@@ -22,7 +22,7 @@ const FaceRecognition = ({ imageUrl, box, selectedBox, demograph, onFaceSelect, 
 					//if a face is not hovered upon all the BB's are displayed
 					box.map((face, i) => {
 					return(
-						<div className="bounding-box" key={i} title={`${i+1}`} onMouseEnter={() => onFaceSelect(demograph[i],i)} onMouseLeave={() => onFaceUnselect()}
+						<div className="bounding-box" key={i} title={`${i+1}`} onMouseEnter={() => onFaceSelect(box, demograph[i],i)} onMouseLeave={() => onFaceUnselect()}
 						style={{top: face.topRow, 
 						right: face.rightCol, 
 						bottom: face.bottomRow, 

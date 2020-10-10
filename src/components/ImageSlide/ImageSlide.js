@@ -1,7 +1,7 @@
 import React from'react';
 import './ImageSlide.css';
 
-const ImageSlide = ({ onImageSelect }) => {
+const ImageSlide = ({ onImageSelect, requestFromAPI, setDemographicsOnLoad, demograph }) => {
 	let images = [
 	{ id: 1, url: 'https://clarifai.com/cms-assets/20180320222304/demographics-001.jpg' },
 	{ id: 2, url: 'https://clarifai.com/cms-assets/20180320222305/demographics-002.jpg' },
@@ -22,7 +22,11 @@ const ImageSlide = ({ onImageSelect }) => {
 			{images.map((item, i) => {
 				return(
 					<div className='flexCon pointer' key={i}>
-						<img className='mr4 ml3 grow flexCon' alt='slideImg' src={item.url} width='50' height='40' onClick={() => onImageSelect(item.url)} />
+						<img className='mr4 ml3 grow flexCon' alt='slideImg' src={item.url} width='50' height='40' 
+						onClick={() => { 
+							onImageSelect(item.url);
+							requestFromAPI(item.url);
+						}} />
 					</div>
 				);
 			})

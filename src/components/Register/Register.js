@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUserTag} from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 import face from './face.png';
 
 class Register extends React.Component {
@@ -12,7 +13,7 @@ class Register extends React.Component {
 	}
 
 	render(){
-		const { onRouteChange } = this.props;
+
 		return(
 			<div className='mt6'>
 				<article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
@@ -43,10 +44,10 @@ class Register extends React.Component {
 					      </div>
 					    </fieldset>
 					    <div className="">
-					      <input onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-100" type="submit" value="Register" />
+					      <input onClick={() => this.props.history.push('/home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-100" type="submit" value="Register" />
 					    </div>
 					    <div className="lh-copy mt3">
-					      <p className="f6 link dim black db pointer" onClick={() => onRouteChange('signin')}>Already a user ?</p>
+					      <p className="f6 link dim black db pointer" onClick={() => this.props.history.push('/')}>Already a user ?</p>
 					    </div>
 					  </div>
 					</main>
@@ -57,4 +58,4 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+export default withRouter(Register);

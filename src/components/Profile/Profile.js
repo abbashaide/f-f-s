@@ -9,7 +9,7 @@ class Profile extends React.Component {
 	}
 
 	render(){
-		const { onRouteChange } = this.props;
+		
 		return(
 			<div className='mt7'>
 				<article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-4">
@@ -37,9 +37,9 @@ class Profile extends React.Component {
 					      </div>
 					    </fieldset>
 					    <div className="">
-					      <input onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-30 mr3" type="submit" value="Cancel" />
+					      <input onClick={() => this.props.history.push('/home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-30 mr3" type="submit" value="Cancel" />
 					    		
-					      <input onClick={() => onRouteChange('profile')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-30 ml3" type="submit" value="Save" />
+					      <input onClick={() => this.props.history.push('/profile')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-30 ml3" type="submit" value="Save" />
 					    </div>
 					  </div>
 					</main>

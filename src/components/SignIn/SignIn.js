@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
 import face from './face.png';
+import { withRouter } from 'react-router-dom';
 
 class SignIn extends React.Component {
 	constructor(props){
@@ -12,7 +13,6 @@ class SignIn extends React.Component {
 	}
 
 	render(){
-		const { onRouteChange } = this.props;
 		return(
 			<div className='mt6'>
 				<article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 center shadow-5">
@@ -37,10 +37,10 @@ class SignIn extends React.Component {
 					      </div>
 					    </fieldset>
 					    <div className="">
-					      <input onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-100" type="submit" value="Sign in" />
+					      <input onClick={() => this.props.history.push('/home')} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib w-100" type="submit" value="Sign in" />
 					    </div>
 					    <div className="lh-copy mt3">
-					      <p className="f6 link dim black db pointer" onClick={() => onRouteChange('register')}>New here ?</p>
+					      <p className="f6 link dim black db pointer" onClick={() => this.props.history.push('/register')}>New here ?</p>
 					    </div>
 					  </div>
 					</main>
@@ -51,4 +51,4 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+export default withRouter(SignIn);

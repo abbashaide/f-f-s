@@ -1,6 +1,6 @@
 import React from 'react';
 import './Demographics.css';
-const Demographics = ({ demograph, onFaceSelect, selectedFace, onFaceUnselect }) => {
+const Demographics = ({ demograph, onFaceSelect, selectedFace, onFaceUnselect, box }) => {
 		
 	return(
 	<div className='body shadow-4 flexCon bg-light-gray'>
@@ -14,7 +14,7 @@ const Demographics = ({ demograph, onFaceSelect, selectedFace, onFaceUnselect })
 				{
 					demograph.map((faceDetails, i) => {
 						return(
-							<button className="grow tc mr1 ml1" key={i} style={{width: 30, height: 30}} onMouseLeave={() => onFaceUnselect()} onClick={() => onFaceSelect(faceDetails, i)} >{`${i+1}`}</button>
+							<button className="grow tc mr1 ml1" key={i} style={{width: 30, height: 30}} onMouseLeave={() => onFaceUnselect()} onClick={() => onFaceSelect(box, faceDetails, i)} >{`${i+1}`}</button>
 						)
 					})
 				}
