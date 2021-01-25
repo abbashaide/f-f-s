@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => {
 
 
 const app = new Clarifai.App({
- apiKey: '3a7b8f6b8b974388a03d44d2034eab3e'
+ apiKey: '1ef0d6a6e2b34e869aa75ed976d22086'
 });
 
 const particleOptions = {
